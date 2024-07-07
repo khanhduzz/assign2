@@ -18,7 +18,12 @@ public class Main {
 //        createSong();
 //        createProduct();
 //        createCustomer();
-        System.out.println(CustomerRepository.findById(1L));
+//        System.out.println(CustomerRepository.findById(1L));
+//        System.out.println(CustomerRepository.findByIdWithDetails(1L));
+        Customer customer = CustomerRepository.findByIdWithDetails(1L);
+        customer.setName("Update");
+        CustomerRepository.updateCustomer(customer);
+        System.out.println(CustomerRepository.findByIdWithDetails(1L));
     }
 
     public static void createConnection () {

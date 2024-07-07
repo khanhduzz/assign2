@@ -2,8 +2,13 @@ package com.fsa.repositories;
 
 import com.fsa.entities.Customer;
 import com.fsa.utils.HibernateUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class CustomerRepository {
 
@@ -13,8 +18,7 @@ public class CustomerRepository {
     public static Customer findById (Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.enableFetchProfile("customer-with-orders");
-            Customer customer =  session.get(Customer.class, id);
+            Customer customer = session.get(Customer.class, id);
             transaction.commit();
             return customer;
         } catch (Exception e) {
@@ -23,22 +27,25 @@ public class CustomerRepository {
         return null;
     }
 
-//    public static Customer findByIdWithDetails (Long id) {
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            Transaction transaction = session.beginTransaction();
-//            EntityGraph<Customer> entityGraph = em.createEntityGraph(Customer.class);
-//            entityGraph.addAttributeNodes("orders");
-//            Subgraph<Order> orderSubgraph = entityGraph.addSubgraph("orders");
-//            orderSubgraph.addAttributeNodes("orderLines");
-//
-//            Map<String, Object> properties = new HashMap<>();
-//            properties.put("javax.persistence.fetchgraph", entityGraph);
-//
-//            Customer customer = em.find(Customer.class, customerId, properties);
-//            em.close();
-//            emf.close();
-//        }
-//    }
+    public static Customer findByIdWithDetails (Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Customer> customerCriteriaQuery = criteriaBuilder.createQuery(Customer.class);
+            Root<Customer> root = customerCriteriaQuery.from(Customer.class);
+
+            root.fetch("orders", JoinType.LEFT).fetch("orderLines", JoinType.LEFT);
+            customerCriteriaQuery.select(root).where(criteriaBuilder.equal(root.get("id"), id));
+
+            Query<Customer> query = session.createQuery(customerCriteriaQuery);
+            Customer customer = query.uniqueResult();
+
+            session.flush();
+            transaction.commit();
+            return customer;
+        }
+    }
 
     public static Customer addCustomer(Customer customer) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -62,5 +69,16 @@ public class CustomerRepository {
             System.out.println("Error while updating customer " + customer);
         }
         return null;
+    }
+
+    public static void deleteCustomer (Customer customer) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.remove(customer);
+            session.flush();
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println("Error while deleting customer " + customer);
+        }
     }
 }

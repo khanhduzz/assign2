@@ -43,6 +43,7 @@ public class Customer {
     @Column(nullable = false, length = 100)
     String email;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Set<Order> orders = new HashSet<>();
 

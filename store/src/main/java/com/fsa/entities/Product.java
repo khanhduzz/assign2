@@ -55,6 +55,7 @@ public abstract class Product implements Serializable {
     @Column(length = 50)
     String genre;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Set<OrderLine> orderLines = new HashSet<>();
 
