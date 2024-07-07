@@ -1,7 +1,6 @@
 package com.fsa.repositories;
 
 import com.fsa.entities.Movie;
-import com.fsa.entities.Song;
 import com.fsa.utils.HibernateUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
