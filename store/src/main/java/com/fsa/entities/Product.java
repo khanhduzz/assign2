@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -15,16 +17,19 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "products")
 @Getter
 @Setter
 @ToString
+@Table(name = "products")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Product {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Product implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -50,4 +55,5 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     Set<OrderLine> orderLines;
+
 }

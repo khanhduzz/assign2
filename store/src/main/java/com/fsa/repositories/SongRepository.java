@@ -18,12 +18,4 @@ public class SongRepository {
         }
         return null;
     }
-
-//    public static Song updateSong (Long id, Song updateSong) {
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()){
-//            Transaction transaction = session.beginTransaction();
-//            Song song = session.get(Song.class, id);
-//
-//        }
-//    }
 }

@@ -1,4 +1,4 @@
 
-s	java:S116"WRename this field "product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó½•ù8É„‡ˆ2
-R
-java:S1128"5Remove this unused import 'com.fsa.entities.Product'.(´öÚÃ8É„‡ˆ2
+™	java:S116"WRename this field "product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó½•ù8É„‡ˆ2J$4eabfade-6af9-4dea-838c-89c47fe7b95c
+x
+java:S1128"5Remove this unused import 'com.fsa.entities.Product'.(´öÚÃ8É„‡ˆ2J$34a8b629-fd85-4434-90c8-9bb3f2b5565a

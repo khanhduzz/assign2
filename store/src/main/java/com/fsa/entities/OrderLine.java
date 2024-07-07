@@ -36,4 +36,5 @@ public class OrderLine {
 
     @ManyToOne
     Product product;
+
 }

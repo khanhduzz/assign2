@@ -1,16 +1,17 @@
 package com.fsa.entities;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -18,9 +19,9 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "songs")
-public class Song{
-
-    @EmbeddedId ProductId id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class Song extends Product implements Serializable {
 
     @Column(name = "duration", columnDefinition = "DECIMAL(4,2) CHECK (duration > 0)")
     Double duration;
@@ -28,6 +29,4 @@ public class Song{
     @Column(columnDefinition = "TEXT")
     String lyrics;
 
-    @MapsId("id")
-    @ManyToOne Product product;
 }
