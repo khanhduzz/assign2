@@ -20,6 +20,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -55,6 +56,11 @@ public abstract class Product implements Serializable {
     String genre;
 
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    Set<OrderLine> orderLines;
+    Set<OrderLine> orderLines = new HashSet<>();
+
+    public void addOrderLine(OrderLine orderLine) {
+        orderLine.setProduct(this);
+        this.orderLines.add(orderLine);
+    }
 
 }

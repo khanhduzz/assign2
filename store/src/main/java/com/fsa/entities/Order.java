@@ -19,6 +19,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -41,7 +42,7 @@ public class Order {
     Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
-    Set<OrderLine> orderLines;
+    Set<OrderLine> orderLines = new HashSet<>();
 
     public void addOrderLine (OrderLine orderLine) {
         orderLine.setOrder(this);

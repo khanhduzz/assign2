@@ -22,4 +22,16 @@ public class SongRepository {
         }
         return null;
     }
+
+    public static Song updateSong (Song song) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            Transaction transaction = session.beginTransaction();
+            session.merge(song);
+            transaction.commit();
+            return song;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
 }

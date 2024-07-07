@@ -29,3 +29,7 @@ c
 -store/src/main/java/com/fsa/dtos/SongDto.java,3/b/3be22046442b97c9d9ef3527088c1081794a6ab2
 o
 ?store/src/main/java/com/fsa/repositories/ProductRepository.java,b/7/b7c9fff660b0841a26555494324feb5a30e69f13
+7
+LICENSE,0/3/0398ccd0f49298b10a3d76a47800d2ebecd49859
+p
+@store/src/main/java/com/fsa/repositories/CustomerRepository.java,a/7/a7d0c0a4399c7a1ea132a553d39bff9084fbc227
