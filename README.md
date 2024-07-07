@@ -38,6 +38,7 @@ The ERD consists of the following entities:
 4. **Github ci/cd**
 
    Install JDK11
+   
    Run and build: mvn clean install
 
 ### Description
