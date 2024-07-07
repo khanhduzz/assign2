@@ -13,15 +13,30 @@ The ERD consists of the following entities:
 - Customer
 - Order
 - OrderLine
+  
+## Setup Instructions
+1. Clone the repository.
+2. Configure your MySQL database credentials in `hibernate.cfg.xml`.
+3. Build the project using Maven: `mvn clean install`.
 
 ## Project Setup
 
 ### Prerequisites
 
-- JDK 11
-- Maven 3.6.3 or above
-- Hibernate 5.4 or above
-- MySQL 8.0 or above (or any other preferred database)
+#### Technologies Used
+
+- **Java 11**: Programming language.
+- **Spring Framework**: Used for dependency injection and managing transactions.
+- **Hibernate ORM**: Object-Relational Mapping framework for database interactions.
+- **MySQL Connector/J**: JDBC driver for MySQL database connectivity.
+- **Hibernate Validator**: Used for bean validation.
+- **Lombok**: Library to reduce boilerplate code in Java classes.
+- **Ehcache**: Distributed cache management.
+- **JAXB**: Java Architecture for XML Binding for XML processing.
+
+#### Dependencies
+
+All dependencies are managed via Maven (https://maven.apache.org/).
 
 ### Configuration
 
@@ -35,7 +50,7 @@ The ERD consists of the following entities:
 
    Run and build: mvn clean install
    
-4. **Github ci/cd**
+4. **Github CI/CD**
 
    Install JDK11
    
@@ -43,9 +58,16 @@ The ERD consists of the following entities:
 
 ### Description
 
-1. **Returning Data**
-
    The project does not use Dto to create, update or get entity. Be careful will lazy initialize error when remove ToString.Exclude in Entity
    
+### Usage
 
-Feel free to modify the README file as per your specific project requirements. If you need further assistance with the implementation details, let me know!
+   Describe how to use the application or provide any relevant instructions here.
+
+### Contributing
+
+   Feel free to contribute to this project by submitting pull requests.
+
+### License
+   
+   This project is licensed under the [MIT License](LICENSE).
