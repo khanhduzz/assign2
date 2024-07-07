@@ -26,7 +26,7 @@ public class Main {
     public static final String LINE = "---------------------------------------";
 
     public static void main(String[] args) {
-//        crudNoHQLCase();
+        crudNoHQLCase();
         crudHQLCase();
     }
 
