@@ -1,5 +1,6 @@
 package com.fsa.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -37,7 +38,11 @@ public class OrderLine {
     Order order;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Product product;
+
+    public void addProduct (Product product) {
+        this.product = product;
+    }
 
 }

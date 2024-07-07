@@ -59,9 +59,4 @@ public abstract class Product implements Serializable {
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Set<OrderLine> orderLines = new HashSet<>();
 
-    public void addOrderLine(OrderLine orderLine) {
-        orderLine.setProduct(this);
-        this.orderLines.add(orderLine);
-    }
-
 }

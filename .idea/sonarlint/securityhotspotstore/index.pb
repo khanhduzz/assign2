@@ -35,3 +35,9 @@ p
 @store/src/main/java/com/fsa/repositories/CustomerRepository.java,a/7/a7d0c0a4399c7a1ea132a553d39bff9084fbc227
 m
 =store/src/main/java/com/fsa/repositories/OrderRepository.java,2/2/22f768b6c9b56843df1bb6710f5d5824b8f45994
+K
+.github/workflows/maven.yml,c/7/c709f6995f23dae0da365bff70068f8288fa89e0
+m
+=store/src/main/java/com/fsa/repositories/MovieRepository.java,9/f/9f4d9a9f0f6da3ee6c1ad5728a218cccb918183b
+m
+=store/src/main/java/com/fsa/repositories/EbookRepository.java,1/c/1cf5a7c732436629370285cbd9bb0766c9ab432a

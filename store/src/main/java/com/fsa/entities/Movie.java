@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @Table(name = "movies")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Movie extends Product implements Serializable {

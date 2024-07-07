@@ -41,7 +41,6 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     Customer customer;
 
-    @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     Set<OrderLine> orderLines = new HashSet<>();
 

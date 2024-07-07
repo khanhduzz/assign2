@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "songs")
 @AllArgsConstructor

@@ -10,6 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomerRepository {
 
     private CustomerRepository() {
@@ -35,7 +38,9 @@ public class CustomerRepository {
             CriteriaQuery<Customer> customerCriteriaQuery = criteriaBuilder.createQuery(Customer.class);
             Root<Customer> root = customerCriteriaQuery.from(Customer.class);
 
-            root.fetch("orders", JoinType.LEFT).fetch("orderLines", JoinType.LEFT);
+            root.fetch("orders", JoinType.LEFT)
+                    .fetch("orderLines", JoinType.LEFT)
+                    .fetch("product", JoinType.LEFT);
             customerCriteriaQuery.select(root).where(criteriaBuilder.equal(root.get("id"), id));
 
             Query<Customer> query = session.createQuery(customerCriteriaQuery);
@@ -80,5 +85,30 @@ public class CustomerRepository {
         } catch (Exception e) {
             System.out.println("Error while deleting customer " + customer);
         }
+    }
+
+    public static List<Customer> getAllCustomers() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Customer> customerCriteriaQuery = criteriaBuilder.createQuery(Customer.class);
+
+            Root<Customer> root = customerCriteriaQuery.from(Customer.class);
+            root.fetch("orders", JoinType.LEFT)
+                    .fetch("orderLines", JoinType.LEFT)
+                    .fetch("product", JoinType.LEFT);
+
+            customerCriteriaQuery.select(root);
+
+            Query<Customer> query = session.createQuery(customerCriteriaQuery);
+            List<Customer> customers = query.getResultList();
+
+            transaction.commit();
+            return customers;
+        } catch (Exception e) {
+            System.out.println("Error while retrieving customers");
+        }
+        return new ArrayList<>();
     }
 }
