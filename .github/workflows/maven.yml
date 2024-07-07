@@ -27,10 +27,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Change directory to store
-        run: cd store
-      - name: Clean and Build with Maven
-        run: mvn clean package --file pom.xml
+    - name: Clean and Build with Maven
+      run: mvn clean package --file ./store/pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
