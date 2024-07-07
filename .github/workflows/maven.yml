@@ -26,6 +26,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: List files for debugging
+      run: ls -R
     - name: Clean and Build with Maven
       run: mvn -f store/pom.xml clean install
 
