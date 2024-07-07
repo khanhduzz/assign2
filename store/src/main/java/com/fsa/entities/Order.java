@@ -3,6 +3,7 @@ package com.fsa.entities;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,9 +36,15 @@ public class Order {
     @Column(name = "order_date")
     LocalDate orderDate;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     Set<OrderLine> orderLines;
+
+    public void addOrderLine (OrderLine orderLine) {
+        orderLine.setOrder(this);
+        this.orderLines.add(orderLine);
+    }
 }

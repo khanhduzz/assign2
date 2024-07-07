@@ -1,15 +1,20 @@
 package com.fsa;
 
+import com.fsa.entities.Customer;
+import com.fsa.entities.Order;
+import com.fsa.entities.OrderLine;
 import com.fsa.entities.Song;
 import com.fsa.repositories.SongRepository;
 import com.fsa.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-//        createConnection();
-        createSong();
+        createConnection();
+//        createSong();
 //        createProduct();
     }
 
@@ -57,5 +62,33 @@ public class Main {
         song.setLyrics("This is lyrics");
 
         System.out.println(SongRepository.createSong(song));
+    }
+
+    public static void createCustomer () {
+        Customer customer = new Customer();
+        customer.setEmail("customer@gmail.com");
+        customer.setName("Customer Name");
+        customer.setPhone("02937352323");
+
+        Song song = new Song();
+        song.setTitle("Song");
+        song.setDuration(4.5);
+        song.setLyrics("This is lyrics");
+        song.setLanguage("English");
+        song.setReleaseDate(LocalDate.now());
+        song.setUnitPrice(45.0);
+        song.setGenre("Country");
+
+        Order order = new Order();
+        order.setCustomer(customer);
+        order.setOrderDate(LocalDate.now());
+
+        OrderLine orderLine = new OrderLine();
+        orderLine.setQuantity(10);
+        orderLine.setProduct(song);
+
+        order.addOrderLine(orderLine);
+        customer.addOrder(order);
+
     }
 }

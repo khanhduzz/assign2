@@ -1,0 +1,10 @@
+com/fsa/utils/HibernateUtil.class
+com/fsa/Main.class
+com/fsa/entities/Song.class
+com/fsa/entities/Ebook.class
+com/fsa/entities/Product.class
+com/fsa/entities/Movie.class
+com/fsa/entities/Order.class
+com/fsa/entities/Customer.class
+com/fsa/entities/OrderLine.class
+com/fsa/repositories/SongRepository.class

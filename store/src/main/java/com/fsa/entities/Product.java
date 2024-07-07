@@ -1,5 +1,6 @@
 package com.fsa.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,7 +54,7 @@ public abstract class Product implements Serializable {
     @Column(length = 50)
     String genre;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Set<OrderLine> orderLines;
 
 }

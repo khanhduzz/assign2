@@ -7,12 +7,16 @@ import org.hibernate.Transaction;
 
 public class SongRepository {
 
+    private SongRepository() {
+    }
+
     public static Song createSong (Song song) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             session.persist(song);
             session.flush();
             transaction.commit();
+            return song;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

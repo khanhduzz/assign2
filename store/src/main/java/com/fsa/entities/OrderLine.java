@@ -1,7 +1,9 @@
 package com.fsa.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,10 +33,12 @@ public class OrderLine {
     @Column(name = "unit_price", columnDefinition = "DECIMAL(11,2) CHECK (unit_price > 0)")
     Double unitPrice;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     Order order;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     Product product;
 
 }

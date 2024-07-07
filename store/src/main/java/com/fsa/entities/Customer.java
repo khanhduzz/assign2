@@ -39,6 +39,11 @@ public class Customer {
     @Column(nullable = false, length = 100)
     String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     Set<Order> orders;
+
+    public void addOrder(Order order) {
+        order.setCustomer(this);
+        this.orders.add(order);
+    }
 }
