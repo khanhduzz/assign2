@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Standard Checkout
-      uses: store/checkout@v2
+      uses: actions/checkout@v2
     - name: Clean and Build with Maven
       run: mvn clean install
 
