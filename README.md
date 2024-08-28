@@ -1,4 +1,4 @@
-# Assignment - FPT ORM
+# Assignment - ORM
 
 This project is a simple implementation of an online store that sells digital products using Hibernate. The data model is represented using an Entity Relationship Diagram (ERD).
 
